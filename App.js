@@ -6,8 +6,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 // Screens
 import HomeScreen from "./components/screens/Home/HomeScreen";
-import QuestionsScreen from "./components/screens/QA/QuestionsScreen";
-import SpinTheBottle from "./components/screens/SpinTheBottle/SpinTheBottle";
+import { QuestionsScreen } from "./components/screens/QA/QuestionsScreen";
+import { SpinTheBottle } from "./components/screens/SpinTheBottle/SpinTheBottle";
 
 const Stack = createStackNavigator();
 

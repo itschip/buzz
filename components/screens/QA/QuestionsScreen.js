@@ -4,7 +4,7 @@ import { Feather } from "@expo/vector-icons";
 import { QuestionModule } from '../../games/QA/QuestionModule';
 import { LinearGradient } from 'expo-linear-gradient';
 
-export default function QuestionsScreen({ navigation }) {
+export const QuestionsScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <LinearGradient 

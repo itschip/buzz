@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
-export default function SpinTheBottle() {
+export const SpinTheBottle = () => {
   return (
     <View style={styles.container}>
       <Text>Flasketuten</Text>
