@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native'
 import { useFonts, Montserrat_500Medium, Montserrat_700Bold, } from '@expo-google-fonts/montserrat';
 import { AppLoading } from 'expo';
 
-export const QuestionCard = (props, {  question }) => {
+export const QuestionCard = ({ question }) => {
   let [fontLoaded] = useFonts({
     Montserrat_500Medium, 
     Montserrat_700Bold
@@ -22,7 +22,7 @@ export const QuestionCard = (props, {  question }) => {
               fontFamily: 'Montserrat_700Bold',
             }}
           >
-            {props.question}
+            {question}
           </Text>
         </View>
       )
