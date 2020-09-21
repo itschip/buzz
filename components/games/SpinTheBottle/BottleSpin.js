@@ -1,18 +1,16 @@
 import React, { useState } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import { onChange } from 'react-native-reanimated'
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
 
-export default function BottleSpin() {
+export const BottleSpin = () => {
   const [text, setText] = useState('Bottle Spin')
-
-  const onChange = () => {
-    setText('Hello')
-  }
 
   return (
     <View>
-      <TouchableOpacity onPress={onChange}>
-        <Text>{text}</Text>
+      <View style={styles.imgContainer}>
+        <Image style={styles.bottle} source={require('../../../assets/beerbottle.png')} />
+      </View>
+      <TouchableOpacity>
+        <Text>Spin the bottle</Text>
       </TouchableOpacity>
     </View>
   )
@@ -23,5 +21,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  bottle: {
+    height: 300,
+    width: 200
   }
 })
