@@ -1,24 +1,44 @@
-import React, { useState } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
+import React from 'react'
+import { View, Text, StyleSheet, TouchableOpacity, Image, Animated } from 'react-native'
+import { Easing } from 'react-native-reanimated';
 
-export const BottleSpin = () => {
-  const [text, setText] = useState('Bottle Spin')
+export class BottleSpin extends React.Component {
+  //const [rotation, setRotation] = useState('');
 
 
-  const onBottleSpin = () => {
-    console.log('Skkrrt')
+  onBottleSpin = () => {
+    this.animatedValue = new Animated.Value(0);
   }
 
-  return (
-    <View>
-      <View style={styles.imgContainer}>
-        <Image style={styles.bottle} source={require('../../../assets/beerbottle.png')} />
+  render() {
+
+    const interpolateRotation = this.animatedValue.interpolate({
+      inputRange: [0, 1],
+      outputRange: ['0deg', '360deg']
+    })
+
+    const animatedStyle = {
+      transform: [
+        { rotate: interpolateRotation }
+      ]
+    }
+
+    return (
+      <View>
+        <View>
+          <TouchableOpacity>
+            <Animated.Image 
+              style={{
+                height: 300,
+                width: 200,
+                animatedStyle
+              }} 
+              source={require('../../../assets/beerbottle.png')} />
+          </TouchableOpacity>
+        </View>
       </View>
-      <TouchableOpacity onPress={onBottleSpin}>
-        <Text>Spin the bottle</Text>
-      </TouchableOpacity>
-    </View>
-  )
+    )
+  }
 }
 
 const styles = StyleSheet.create({
@@ -27,8 +47,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  bottle: {
-    height: 300,
-    width: 200
-  }
 })
