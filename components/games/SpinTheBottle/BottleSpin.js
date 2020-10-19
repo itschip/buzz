@@ -1,39 +1,56 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Image, Animated } from 'react-native'
+import { Font, AppLoading } from 'expo';
+import { Montserrat_500Medium, Montserrat_700Bold, } from '@expo-google-fonts/montserrat';
 import { Easing } from 'react-native-reanimated';
 
 export class BottleSpin extends React.Component {
-  //const [rotation, setRotation] = useState('');
 
 
-  onBottleSpin = () => {
-    this.animatedValue = new Animated.Value(0);
+  constructor(props) {
+    super(props);
+    this.state = { spinAnim: new Animated.Value(0) }
   }
 
+  rotateBottleHandle = () => {
+    Animated.decay(
+      this.state.spinAnim,
+    {
+      velocity: 1000,
+      toValue: 1,
+      duration: 1000,
+      easing: Easing.quad,
+      useNativeDriver: true
+    }
+  ).start();
+    
+
+  }
   render() {
 
-    const interpolateRotation = this.animatedValue.interpolate({
-      inputRange: [0, 1],
-      outputRange: ['0deg', '360deg']
-    })
+    const randomDegree = Math.floor(Math.random() * 720) + 1;
 
-    const animatedStyle = {
-      transform: [
-        { rotate: interpolateRotation }
-      ]
-    }
+    const spin = this.state.spinAnim.interpolate({
+      inputRange: [0, 1],
+      outputRange: ['0deg', randomDegree + 'deg']
+    });
 
     return (
       <View>
         <View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={this.rotateBottleHandle}>
             <Animated.Image 
               style={{
                 height: 300,
                 width: 200,
-                animatedStyle
+                transform: [{ rotate: spin }]
               }} 
               source={require('../../../assets/beerbottle.png')} />
+          </TouchableOpacity>
+        </View>
+        <View>
+          <TouchableOpacity style={styles.spinButton} onPress={this.rotateBottleHandle}>
+            <Text style={{ fontSize: 24 }}>Spin</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -47,4 +64,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  spinButton: {
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    padding: 20,
+    borderRadius: 5
+  }
 })
