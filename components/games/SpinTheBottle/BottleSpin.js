@@ -3,9 +3,10 @@ import { View, Text, StyleSheet, TouchableOpacity, Image, Animated } from 'react
 import { Font, AppLoading } from 'expo';
 import { Montserrat_500Medium, Montserrat_700Bold, } from '@expo-google-fonts/montserrat';
 import { Easing } from 'react-native-reanimated';
+import { BottleModal } from './BottleModal';
+import { useModal } from './hooks/useModal';
 
 export class BottleSpin extends React.Component {
-
 
   constructor(props) {
     super(props);
@@ -23,8 +24,7 @@ export class BottleSpin extends React.Component {
       useNativeDriver: true
     }
   ).start();
-    
-
+    // npm install -g expo-cli
   }
   render() {
 
@@ -38,7 +38,6 @@ export class BottleSpin extends React.Component {
     return (
       <View>
         <View>
-          <TouchableOpacity onPress={this.rotateBottleHandle}>
             <Animated.Image 
               style={{
                 height: 300,
@@ -46,12 +45,12 @@ export class BottleSpin extends React.Component {
                 transform: [{ rotate: spin }]
               }} 
               source={require('../../../assets/beerbottle.png')} />
-          </TouchableOpacity>
         </View>
         <View>
           <TouchableOpacity style={styles.spinButton} onPress={this.rotateBottleHandle}>
             <Text style={{ fontSize: 24 }}>Spin</Text>
           </TouchableOpacity>
+         
         </View>
       </View>
     )
