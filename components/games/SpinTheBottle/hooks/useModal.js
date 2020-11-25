@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { bottleState } from './state';
 
 export const useModal = () => {
-  const [beerModal, setBeerModal] = useState(false);
+  const [beerModal, setBeerModal] = useRecoilState(bottleState.modal);
   return { beerModal, setBeerModal };
 }

@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native'
-import { call } from 'react-native-reanimated';
 import { useModal } from './hooks/useModal';
 
 export const BottleModal = (props) => {
@@ -15,7 +14,7 @@ export const BottleModal = (props) => {
     <View style={beerModal ? styles.modalContainer : styles.hideModal}>
       <Text>{props.title}</Text>
       <Text>{props.desc}</Text>
-      <TouchableOpacity onClick={closeModal}>
+      <TouchableOpacity onPress={closeModal}>
         <Text>Close</Text>
       </TouchableOpacity>
     </View>
